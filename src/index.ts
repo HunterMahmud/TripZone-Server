@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import abc from "./routes/users";
 import jwtGenerator from './routes/JWTGenerator';
@@ -27,6 +26,7 @@ const uri = `mongodb+srv://${process.env.DB_USE}:${process.env.DB_PASS}@cluster0
 
 app.use('/jwt',jwtGenerator)
 app.use("/api/users", abc);
+
 
 const client = new MongoClient(uri, {
   serverApi: {
