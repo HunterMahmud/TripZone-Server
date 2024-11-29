@@ -33,8 +33,8 @@ function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield (0, ConnectDB_1.connectToDatabase)(); // Connect to MongoDB
-            app.use('/jwt', JWTGenerator_1.default);
-            app.use("/user", users_1.default); // Use user routes
+            app.use('/jwt', JWTGenerator_1.default); // post and get jwt
+            app.use("/user", users_1.default); // post User data
             app.get('/', (req, res) => {
                 res.send('TripZone server is running...');
             });
