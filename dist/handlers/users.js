@@ -9,15 +9,40 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUsers = getUsers;
-exports.getUserById = getUserById;
-function getUsers(req, res) {
+exports.createUser = createUser;
+const ConnectDB_1 = require("../database/ConnectDB");
+function createUser(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        res.send([]);
-    });
-}
-function getUserById(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        res.send({});
+        try {
+            if (!ConnectDB_1.userCollection) {
+                res.status(500).send({ message: "Database not connected" });
+                return;
+            }
+            const userInfo = req.body;
+            // Check if the required fields are present
+            if (!userInfo.email) {
+                res.status(400).send({ message: "Email is required" });
+                return;
+            }
+            const query = { email: userInfo.email };
+            const isExists = yield ConnectDB_1.userCollection.findOne(query);
+            if (isExists) {
+                res.send({ message: "User already exists", insertedId: null });
+                return;
+            }
+            // Assign default role
+            userInfo.role = "user";
+            const result = yield ConnectDB_1.userCollection.insertOne(userInfo);
+            res.status(201).send({
+                message: "User created successfully",
+                insertedId: result.insertedId,
+            });
+            return;
+        }
+        catch (error) {
+            console.error("Error in createUser:", error);
+            res.status(500).send({ message: "Internal Server Error" });
+            return;
+        }
     });
 }

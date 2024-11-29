@@ -27,10 +27,12 @@ app.use(express.json());
 async function startServer() {
   try {
     await connectToDatabase(); // Connect to MongoDB
-    app.use('/jwt',jwtGenerator)
-    app.use("/user", userRoutes); // Use user routes
+    app.use('/jwt',jwtGenerator) // post and get jwt
+    app.use("/user", userRoutes); // post User data
 
-
+    app.get('/', (req: Request, res: Response)=>{
+      res.send('TripZone server is running...');
+    })
     app.listen(port, () => {
       console.log(`Server running on port ${port}`);
     });
