@@ -14,6 +14,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
+      "https://trip-zone-server.vercel.app"
       // other links will be here
     ],
     credentials: true,
