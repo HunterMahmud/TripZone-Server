@@ -42,14 +42,4 @@ async function startServer() {
 
 startServer();
 
-// app.use("/user", user);
 
-
-
-// app.get("/", (req: Request, res: Response) => {
-//   res.send("TripZone server is running...");
-// });
-
-// app.listen(port, () => {
-//   console.log(`Running on port ${port}`);
-// });
