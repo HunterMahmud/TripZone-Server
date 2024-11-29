@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/handlers/jwtgenerator.ts","./src/handlers/users.ts","./src/routes/jwtgenerator.ts","./src/routes/users.ts"],"version":"5.7.2"}
+{"root":["./src/index.ts","./src/database/connectdb.ts","./src/handlers/jwtgenerator.ts","./src/handlers/users.ts","./src/middlewares/adminverify.ts","./src/middlewares/tokenverify.ts","./src/routes/jwtgenerator.ts","./src/routes/users.ts"],"version":"5.7.2"}
