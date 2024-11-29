@@ -5,7 +5,7 @@ import { getPackage } from "../handlers/GetPackage";
 
 const router: Router = express.Router();
 
-// have to add user verify to add the package
+// have to add user verify to get the package
 // /get-packages api
 router.get("/",getPackages);
 
