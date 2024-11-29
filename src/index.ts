@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import userRoutes from "./routes/users";
 import jwtGenerator from './routes/JWTGenerator';
+import addpackage from './routes/AddPackages'
 import { connectToDatabase } from "./database/ConnectDB";
 
 dotenv.config();
@@ -30,6 +31,7 @@ async function startServer() {
     await connectToDatabase(); // Connect to MongoDB
     app.use('/jwt',jwtGenerator) // post and get jwt
     app.use("/user", userRoutes); // post User data
+    app.use('/add-package', addpackage) // psot add-package
 
     app.get('/', (req: Request, res: Response)=>{
       res.send('TripZone server is running...');

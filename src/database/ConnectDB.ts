@@ -14,11 +14,13 @@ const client = new MongoClient(uri, {
 });
 
 export let userCollection: Collection | undefined;
+export let packageCollection: Collection | undefined;
 
 export async function connectToDatabase() {
   try {
     await client.connect();
     userCollection = client.db("TripDB").collection("users");
+    packageCollection = client.db("TripDB").collection("packages");
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
