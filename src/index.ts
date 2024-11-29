@@ -28,7 +28,7 @@ async function startServer() {
   try {
     await connectToDatabase(); // Connect to MongoDB
     app.use('/jwt',jwtGenerator)
-    app.use("/users", userRoutes); // Use user routes
+    app.use("/user", userRoutes); // Use user routes
 
 
     app.listen(port, () => {
