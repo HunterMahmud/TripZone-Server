@@ -6,7 +6,7 @@ import { JWTGenerator } from "../handlers/JWTGEnerator";
 const router = Router();
 
 // /jwt
-router.get('/', JWTGenerator);
+router.post('/', JWTGenerator);
 
 
 export default router;
