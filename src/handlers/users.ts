@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { userCollection } from "../database/ConnectDB";
+import { usersCollection } from "../database/ConnectDB";
 
 export async function createUser(req: Request, res: Response) :Promise<void> {
   try {
-    if (!userCollection) {
+    if (!usersCollection) {
        res.status(500).send({ message: "Database not connected" });
        return;
     }
@@ -17,7 +17,7 @@ export async function createUser(req: Request, res: Response) :Promise<void> {
     }
 
     const query = { email: userInfo.email };
-    const isExists = await userCollection.findOne(query);
+    const isExists = await usersCollection.findOne(query);
 
     if (isExists) {
        res.send({ message: "User already exists", insertedId: null });
@@ -27,7 +27,7 @@ export async function createUser(req: Request, res: Response) :Promise<void> {
     // Assign default role
     userInfo.role = "user";
 
-    const result = await userCollection.insertOne(userInfo);
+    const result = await usersCollection.insertOne(userInfo);
 
     res.status(201).send({
       message: "User created successfully",
