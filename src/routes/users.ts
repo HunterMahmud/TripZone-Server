@@ -1,14 +1,11 @@
-import {Router} from 'express';
-import { getUserById, getUsers } from '../handlers/users';
+import express, { Router } from "express";
+import { createUser } from "../handlers/users";
+// import { createUser } from "../controllers/users";
 
-const router = Router();
+const router: Router = express.Router();
 
-
-// /api/users
-router.get('/',getUsers);
-
-// /api/users/:id
-router.get('/:id',getUserById );
+router.post("/", createUser);
 
 export default router;
+
 
