@@ -15,12 +15,16 @@ const client = new MongoClient(uri, {
   },
 });
 
-export let userCollection: Collection | undefined;
+export let usersCollection: Collection | undefined;
+export let packagesCollection: Collection | undefined;
+export let bookingsCollection: Collection | undefined;
 
 export async function connectToDatabase() {
   try {
     await client.connect();
-    userCollection = client.db("TripDB").collection("users");
+    usersCollection = client.db("TripDB").collection("users");
+    packagesCollection = client.db("TripDB").collection("packages");
+    bookingsCollection = client.db("TripDB").collection("bookings");
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);

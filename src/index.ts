@@ -3,6 +3,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import userRoutes from "./routes/users";
 import jwtGenerator from './routes/JWTGenerator';
+import addPackage from './routes/AddPackages'
+import getPackage from './routes/GetPackages'
+import addBooking from './routes/AddBooking'
 import { connectToDatabase } from "./database/ConnectDB";
 
 dotenv.config();
@@ -14,6 +17,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
+      "https://trip-zone-server.vercel.app"
       // other links will be here
     ],
     credentials: true,
@@ -27,8 +31,11 @@ app.use(express.json());
 async function startServer() {
   try {
     await connectToDatabase(); // Connect to MongoDB
-    app.use('/jwt',jwtGenerator) // post and get jwt
+    app.use("/jwt",jwtGenerator) // post and get jwt
     app.use("/user", userRoutes); // post User data
+    app.use("/add-package", addPackage); // post add-package
+    app.use("/get-packages", getPackage); // get get-packages
+    app.use("/add-booking", addBooking); // post add-booking
 
     app.get('/', (req: Request, res: Response)=>{
       res.send('TripZone server is running...');
