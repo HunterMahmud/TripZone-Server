@@ -6,6 +6,7 @@ import jwtGenerator from './routes/JWTGenerator';
 import addPackage from './routes/AddPackages'
 import getPackage from './routes/GetPackages'
 import addBooking from './routes/AddBooking'
+import getUser from './routes/getUsers'
 import { connectToDatabase } from "./database/ConnectDB";
 
 dotenv.config();
@@ -36,6 +37,7 @@ async function startServer() {
     app.use("/add-package", addPackage); // post add-package
     app.use("/get-packages", getPackage); // get get-packages
     app.use("/add-booking", addBooking); // post add-booking
+    app.use("/user", getUser); // post add-booking
 
     app.get('/', (req: Request, res: Response)=>{
       res.send('TripZone server is running...');
