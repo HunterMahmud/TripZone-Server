@@ -37,7 +37,8 @@ async function startServer() {
     app.use("/add-package", addPackage); // post add-package
     app.use("/get-packages", getPackage); // get get-packages
     app.use("/add-booking", addBooking); // post add-booking
-    app.use("/user", getUser); // post add-booking
+    app.use("/user", getUser); // get a single user
+    app.use("/users", getUser); // get all users
 
     app.get('/', (req: Request, res: Response)=>{
       res.send('TripZone server is running...');

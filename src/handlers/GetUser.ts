@@ -10,9 +10,8 @@ export async function getUser(req: Request, res: Response) :Promise<void> {
     const email = req.params.email;
     const result = await usersCollection.findOne({ email });
 
-    res.status(201).send({
-      package: result
-    });
+    res.send(result);
+    
     return;
   } catch (error) {
     console.error("Error getting User:", error);
