@@ -13,7 +13,7 @@ export async function AddBooking(req: Request, res: Response) :Promise<void> {
     const result = await bookingsCollection.insertOne(bookingInfo);
 
     res.status(201).send({
-      message: "Booking successfull",
+      message: "Book added successfull",
       insertedId: result.insertedId,
     });
     return;
